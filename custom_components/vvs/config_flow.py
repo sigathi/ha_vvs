@@ -64,7 +64,7 @@ async def validate_connection(
     hass: HomeAssistant, data: dict[str, Any]
 ) -> dict[str, Any]:
     """Validate that the selected specific stations actually have a connection."""
-    from . import vvspy
+    import vvspy
 
     def _test_connection():
         return vvspy.get_trips(data[CONF_START], data[CONF_DESTINATION], limit=1)
