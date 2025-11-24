@@ -1,6 +1,6 @@
 """DataUpdateCoordinator for VVS."""
 
-from datetime import datetime, timedelta
+from datetime import timedelta, timezone
 import logging
 from typing import Any
 
@@ -8,7 +8,6 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from homeassistant.util import dt as dt_util
 
-# Import the library and Station Enum locally
 import vvspy
 from .vvspy.enums.stations import Station
 from .const import SCAN_INTERVAL
@@ -35,7 +34,6 @@ class VVSDataUpdateCoordinator(DataUpdateCoordinator):
         self.route_type = route_type
         self.offset = offset
 
-        # Resolve IDs to Friendly Names for the Sensor
         self.start_station_name = self._get_friendly_name(start_station)
         self.dest_station_name = self._get_friendly_name(dest_station)
 
@@ -48,31 +46,27 @@ class VVSDataUpdateCoordinator(DataUpdateCoordinator):
 
     def _get_friendly_name(self, station_id: str) -> str:
         """Reverse lookup: Find the human name for a station ID."""
-        # Iterate over the Station Enum to find the matching value
         for name, member in Station.__members__.items():
             if member.value == station_id:
-                # Convert "STUTTGART_HBF" -> "Stuttgart Hbf"
                 return name.replace("_", " ").title()
-
-        # Fallback: If not found, return the ID itself
         return station_id
 
     async def _async_update_data(self) -> dict[str, Any]:
         """Fetch data from VVS API."""
         try:
-            check_time = datetime.now() + timedelta(minutes=self.offset)
+            # 1. Prepare search time (Current Local Time + Offset)
+            now_utc = dt_util.now()
+            now_local = dt_util.as_local(now_utc)
+            check_time = now_local + timedelta(minutes=self.offset)
 
-            # Run the blocking library call in a separate thread
+            # Send 'naive' local time to API so it searches for "20:01" not "19:01"
+            check_time_naive = check_time.replace(tzinfo=None)
+
             trips = await self.hass.async_add_executor_job(
-                self._get_trips_internal, check_time
+                self._get_trips_internal, check_time_naive
             )
 
             if not trips:
-                _LOGGER.warning(
-                    "No trips found for %s to %s",
-                    self.start_station_name,
-                    self.dest_station_name,
-                )
                 return {}
 
             return self._parse_trips(trips)
@@ -108,10 +102,25 @@ class VVSDataUpdateCoordinator(DataUpdateCoordinator):
 
             duration = (arrival_planned - departure_planned).total_seconds() / 60
 
+            # --- TIMEZONE FIX ---
+            # The API returns Naive UTC (e.g. 19:01)
+            # 1. Force UTC timezone onto the naive object
+            dep_utc = departure_planned.replace(tzinfo=timezone.utc)
+            arr_utc = arrival_planned.replace(tzinfo=timezone.utc)
+
+            # 2. Convert to HA Local Time (e.g. 19:01 UTC -> 20:01 CET)
+            local_dep = dt_util.as_local(dep_utc)
+            local_arr = dt_util.as_local(arr_utc)
+
+            # 3. Format string
+            dep_str = local_dep.strftime("%H:%M")
+            arr_str = local_arr.strftime("%H:%M")
+            # --------------------
+
             trip_info = {
-                "departure": dt_util.as_local(departure_planned),
+                "departure": dep_str,
                 "departure_delay": first_leg.origin.delay or 0,
-                "arrival": dt_util.as_local(arrival_planned),
+                "arrival": arr_str,
                 "arrival_delay": last_leg.destination.delay or 0,
                 "duration": int(duration),
                 "transports": [],
