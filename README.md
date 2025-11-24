@@ -1,6 +1,7 @@
 # VVS Integration for Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A custom integration for **Verkehrs- und Tarifverbund Stuttgart (VVS)**. It provides real-time connection data between two stations using the EFA API.
 
