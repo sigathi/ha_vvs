@@ -1,7 +1,7 @@
 {
   "domain": "vvs",
   "name": "VVS (Stuttgart)",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "codeowners": ["@sigathi"],
   "config_flow": true,
   "dependencies": [],
