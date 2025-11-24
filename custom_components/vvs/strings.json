@@ -2,33 +2,30 @@
   "config": {
     "step": {
       "user": {
-        "title": "Search Connection",
-        "description": "Enter the exact station names as used by VVS.",
+        "title": "Search Stations",
+        "description": "Please enter the names of your start and destination stations (e.g., 'Stuttgart' or 'Esslingen').",
+        "data": {
+          "start_search": "Search Start Station",
+          "dest_search": "Search Destination Station"
+        }
+      },
+      "select_stations": {
+        "title": "Select Specific Stations",
+        "description": "Select the exact station from the matches found.",
         "data": {
           "start": "Start Station",
           "destination": "Destination Station",
-          "offset": "Time Offset (minutes)",
-          "route_type": "Optimization Criteria",
-          "max_connections": "Number of connections to fetch"
+          "offset": "Offset (min)",
+          "max_connections": "Max Connections",
+          "route_type": "Route Type"
         }
       }
     },
     "error": {
-      "invalid_station": "Could not find connections. Check station names.",
-      "cannot_connect": "Failed to connect to VVS API.",
-      "unknown": "Unexpected error."
-    },
-    "abort": {
-      "already_configured": "This route is already configured."
-    }
-  },
-  "selector": {
-    "route_type": {
-      "options": {
-        "leasttime": "Least Time",
-        "leastinterchange": "Least Interchange",
-        "leastwalking": "Least Walking"
-      }
+      "search_too_short": "Please enter at least 3 characters.",
+      "no_start_matches": "No stations found matching your Start search.",
+      "no_dest_matches": "No stations found matching your Destination search.",
+      "unknown_error": "Connection failed. Please check logs."
     }
   }
 }
