@@ -49,9 +49,5 @@ To visualize this data, use the custom **VVS Card**:
 
 [**Go to VVS Card Repository**](https://github.com/sigathi/ha_vvs_card)
 
-  default: info
-  logs:
-    custom_components.vvs: debug
-
 ## Credits
 Powered by the [**vvspy**](https://github.com/zaanposni/vvspy) library.
