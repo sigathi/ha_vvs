@@ -1,0 +1,12 @@
+{
+  "domain": "vvs",
+  "name": "VVS (Stuttgart)",
+  "version": "1.0.0",
+  "codeowners": ["@your_github_username"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/your_github_username/your_repo_name",
+  "issue_tracker": "https://github.com/your_github_username/your_repo_name/issues",
+  "iot_class": "cloud_polling",
+  "requirements": ["vvspy==1.2.0"]
+}
