@@ -4,7 +4,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 import voluptuous as vol
-import vvspy
+from . import vvspy
 
 from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
