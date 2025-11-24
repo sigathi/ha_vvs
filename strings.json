@@ -1,0 +1,34 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Search Connection",
+        "description": "Enter the exact station names as used by VVS.",
+        "data": {
+          "start": "Start Station",
+          "destination": "Destination Station",
+          "offset": "Time Offset (minutes)",
+          "route_type": "Optimization Criteria",
+          "max_connections": "Number of connections to fetch"
+        }
+      }
+    },
+    "error": {
+      "invalid_station": "Could not find connections. Check station names.",
+      "cannot_connect": "Failed to connect to VVS API.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This route is already configured."
+    }
+  },
+  "selector": {
+    "route_type": {
+      "options": {
+        "leasttime": "Least Time",
+        "leastinterchange": "Least Interchange",
+        "leastwalking": "Least Walking"
+      }
+    }
+  }
+}
