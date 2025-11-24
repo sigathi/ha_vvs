@@ -1,0 +1,31 @@
+{
+    "config": {
+        "error": {
+            "no_dest_matches": "No stations found matching your Destination search.",
+            "no_start_matches": "No stations found matching your Start search.",
+            "search_too_short": "Please enter at least 3 characters.",
+            "unknown_error": "Connection failed. Please check logs."
+        },
+        "step": {
+            "select_stations": {
+                "data": {
+                    "destination": "Destination Station",
+                    "max_connections": "Max Connections",
+                    "offset": "Offset (min)",
+                    "route_type": "Route Type",
+                    "start": "Start Station"
+                },
+                "description": "Select the exact station from the matches found.",
+                "title": "Select Specific Stations"
+            },
+            "user": {
+                "data": {
+                    "dest_search": "Search Destination Station",
+                    "start_search": "Search Start Station"
+                },
+                "description": "Please enter the names of your start and destination stations (e.g., 'Stuttgart' or 'Esslingen').",
+                "title": "Search Stations"
+            }
+        }
+    }
+}
