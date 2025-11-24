@@ -1,0 +1,44 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Verbindung suchen",
+        "description": "Geben Sie die Namen der Haltestellen ein, nach denen Sie suchen möchten.",
+        "data": {
+          "start_search": "Start-Haltestelle suchen",
+          "dest_search": "Ziel-Haltestelle suchen"
+        }
+      },
+      "select_stations": {
+        "title": "Konkrete Haltestelle auswählen",
+        "description": "Bitte wählen Sie die exakte Haltestelle aus der Liste.",
+        "data": {
+          "start": "Start-Haltestelle",
+          "destination": "Ziel-Haltestelle",
+          "offset": "Zeitversatz (Minuten)",
+          "max_connections": "Max. Anzahl Verbindungen",
+          "route_type": "Routen-Optimierung"
+        }
+      }
+    },
+    "error": {
+      "search_too_short": "Bitte geben Sie mindestens 3 Zeichen für die Suche ein.",
+      "no_start_matches": "Keine Haltestellen für Ihre Start-Suche gefunden.",
+      "no_dest_matches": "Keine Haltestellen für Ihre Ziel-Suche gefunden.",
+      "unknown_error": "Verbindung fehlgeschlagen. Bitte Protokolle prüfen.",
+      "cannot_connect": "Verbindung zur VVS API fehlgeschlagen."
+    },
+    "abort": {
+      "already_configured": "Diese Route ist bereits konfiguriert."
+    }
+  },
+  "selector": {
+    "route_type": {
+      "options": {
+        "leasttime": "Schnellste (Kürzeste Zeit)",
+        "leastinterchange": "Wenig Umstiege",
+        "leastwalking": "Wenig Fußwege"
+      }
+    }
+  }
+}
