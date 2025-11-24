@@ -1,5 +1,13 @@
 """Config flow for VVS integration."""
 
+import os
+import sys
+
+# Add the current folder to sys.path so 'import vvspy' works
+current_path = os.path.dirname(__file__)
+if current_path not in sys.path:
+    sys.path.append(current_path)
+
 import logging
 import re
 from typing import Any
