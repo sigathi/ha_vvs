@@ -39,11 +39,12 @@ This integration is configured entirely via the Home Assistant UI. You do not ne
 
 > [!TIP]
 > **Handling Duplicate Station Names**
+> 
 > If multiple stations share the same name, the search result will only show one.
 > 
 > **Solution:** > 1. Browse the [full station list here](./custom_components/vvs/vvspy/enums/stations.py).
 > 2. Find the specific station you need.
-> 3. Copy the **exact ID** (e.g., `Station_Name_1`) and paste it into the search field.
+> 3. Copy the **exact ID** (e.g., `STATION_NAME_1`) and paste it into the search field.
 
 ## Entities
 
