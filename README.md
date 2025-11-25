@@ -37,6 +37,8 @@ This integration is configured entirely via the Home Assistant UI. You do not ne
     * **Max Connections:** How many upcoming trips to fetch (default: 3).
     * **Route Type:** Optimize for Time, Interchanges, or Walking.
 
+Note: If multiple stations with the same name exists, the search just shows one. In this case, you can chose the correct station from [this](./custom_components/vvs/vvspy/enums/stations.py) list and copy the full name (including _1 or similar) to the search field.
+
 ## Entities
 
 The integration creates one sensor per route:
