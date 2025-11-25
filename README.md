@@ -37,7 +37,13 @@ This integration is configured entirely via the Home Assistant UI. You do not ne
     * **Max Connections:** How many upcoming trips to fetch (default: 3).
     * **Route Type:** Optimize for Time, Interchanges, or Walking.
 
-Note: If multiple stations with the same name exists, the search just shows one. In this case, you can chose the correct station from [this](./custom_components/vvs/vvspy/enums/stations.py) list and copy the full name (including _1 or similar) to the search field.
+> [!TIP]
+> **Handling Duplicate Station Names**
+> If multiple stations share the same name, the search result will only show one.
+> 
+> **Solution:** > 1. Browse the [full station list here](./custom_components/vvs/vvspy/enums/stations.py).
+> 2. Find the specific station you need.
+> 3. Copy the **exact ID** (e.g., `Station_Name_1`) and paste it into the search field.
 
 ## Entities
 
