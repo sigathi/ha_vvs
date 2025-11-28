@@ -75,7 +75,7 @@ async def validate_connection(
     import vvspy
 
     def _test_connection():
-        return vvspy.get_trips(data[CONF_START], data[CONF_DESTINATION], limit=1)
+        return vvspy.get_trips(data[CONF_START], data[CONF_DESTINATION], limit=1, routeType=data[CONF_ROUTE_TYPE])
 
     try:
         result = await hass.async_add_executor_job(_test_connection)
