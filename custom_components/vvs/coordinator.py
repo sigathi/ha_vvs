@@ -88,6 +88,7 @@ class VVSDataUpdateCoordinator(DataUpdateCoordinator):
             self.dest_station,
             check_time=check_time,
             limit=self.limit,
+            routeType=self.route_type,
         )
 
     def _parse_trips(self, raw_trips) -> dict:
